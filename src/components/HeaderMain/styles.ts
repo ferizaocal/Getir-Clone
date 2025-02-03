@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   headerOne: {
     height: height * 0.064,
     width: "80%",
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: "3%",
