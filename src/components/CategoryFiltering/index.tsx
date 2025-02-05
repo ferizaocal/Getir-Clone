@@ -4,15 +4,27 @@ import categoriesGetir from "../../../assets/categoriesGetir";
 import { Category } from "../../models";
 
 const { height, width } = Dimensions.get("window");
-const CategoryBox = ({ item }: { item: Category }) => {
+const CategoryBox = ({
+  item,
+  active,
+}: {
+  active: Category;
+  item: Category;
+}) => {
   return (
     <View
-      style={{
-        paddingHorizontal: 9,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      style={[
+        {
+          paddingHorizontal: 9,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        },
+        item.name == active.name && {
+          borderBottomColor: "#ffd00c",
+          borderBottomWidth: 2,
+        },
+      ]}
     >
       <Text style={{ fontSize: 14, color: "white", fontWeight: "600" }}>
         {item.name}
@@ -34,7 +46,7 @@ export default function Index({ category }: { category: Category }) {
       horizontal={true}
     >
       {categories.map((item) => (
-        <CategoryBox key={item.id} item={item} />
+        <CategoryBox key={item.id} item={item} active={category} />
       ))}
     </ScrollView>
   );
