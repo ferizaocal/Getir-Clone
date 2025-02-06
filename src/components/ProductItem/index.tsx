@@ -8,20 +8,24 @@ import {
 } from "react-native";
 import React from "react";
 import Entypo from "@expo/vector-icons/Entypo";
+import { Product } from "../../models";
 
-export default function Index() {
+type productItemProps = {
+  item: Product;
+};
+
+export default function Index({ item }: productItemProps) {
   const { height, width } = Dimensions.get("window");
   return (
     <TouchableOpacity
       style={{
-        width: width * 0.285,
+        width: width * 0.28,
         marginTop: 12,
-        height: height * 0.25,
+        height: height * 0.23,
         flexDirection: "column",
         alignItems: "flex-start",
-        marginLeft: 12,
-        // backgroundColor:'red',
-        marginBottom: 10,
+        marginLeft: 15,
+        marginBottom: 6,
       }}
     >
       <Image
@@ -29,11 +33,11 @@ export default function Index() {
           width: width * 0.285,
           height: width * 0.285,
           borderRadius: 12,
-          borderWidth: 0.1,
+          borderWidth: 0.2,
           borderColor: "gray",
         }}
         source={{
-          uri: "https://cdn.getir.com/product/5ced4830d349d10001e7055f_tr_1584536178243.jpeg",
+          uri: item.image,
         }}
       />
       <View
@@ -47,7 +51,8 @@ export default function Index() {
             fontSize: 10,
           }}
         >
-          <Text>{"\u20BA"}</Text>22.99
+          {"\u20BA"}
+          {item.fiyatIndirimli}
         </Text>
 
         <Text
@@ -58,11 +63,12 @@ export default function Index() {
             marginLeft: 4,
           }}
         >
-          <Text>{"\u20BA"}</Text>12.99
+          {"\u20BA"}
+          {item.fiyat}
         </Text>
       </View>
       <Text style={{ fontWeight: "600", fontSize: 13, marginTop: 4 }}>
-        misket elma
+        {item.name}
       </Text>
       <Text
         style={{
@@ -72,7 +78,7 @@ export default function Index() {
           fontWeight: "600",
         }}
       >
-        10 kg
+        {item.miktar}
       </Text>
 
       <TouchableOpacity

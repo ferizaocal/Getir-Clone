@@ -49,7 +49,7 @@ const TypeBox = ({
 };
 
 export default function Index() {
-  const [category, setCategory] = useState<String>("Birlikte İyi Gider");
+  const [category, setCategory] = useState<string>("Birlikte İyi Gider");
   return (
     <ScrollView
       contentContainerStyle={{ flexDirection: "row", alignItems: "center" }}
@@ -58,6 +58,7 @@ export default function Index() {
         height: height * 0.072,
         paddingHorizontal: 10,
         backgroundColor: "white",
+        boxShadow: "0px 4px 4px rgba(126, 123, 123, 0.25)",
       }}
       showsHorizontalScrollIndicator={false}
       bounces={true}
@@ -74,7 +75,12 @@ export default function Index() {
         "Ev Bakım",
         "Kişisel",
       ].map((item) => (
-        <TypeBox setCot={setCategory} item={item} active={category} />
+        <TypeBox
+          key={item}
+          setCot={setCategory}
+          item={item}
+          active={category}
+        />
       ))}
     </ScrollView>
   );
