@@ -2,13 +2,21 @@ import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
 import { Category } from "../../models";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../navigators/HomeNavigator";
 
 const { width, height } = Dimensions.get("window");
 type categoryItemProps = {
   item: Category;
 };
+
+type CategoryNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "CategoryDetails"
+>;
+
 export default function index({ item }: categoryItemProps) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<CategoryNavigationProp>();
   return (
     <TouchableOpacity
       style={{
@@ -17,7 +25,7 @@ export default function index({ item }: categoryItemProps) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        marginTop: 10,
+        marginTop: 8,
       }}
       onPress={() => navigation.navigate("CategoryDetails", { category: item })}
     >

@@ -24,15 +24,10 @@ export default function index() {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              Dedepaşa Bulvarı Yenişehir Mahallesi Atatürk Caddesi...
+              Yenişehir Mahallesi Atatürk Caddesi No 128...
             </Text>
           </View>
-          <Entypo
-            name="chevron-right"
-            size={22}
-            color="#5d3ebd"
-            style={{ marginLeft: 0 }}
-          />
+          <Entypo name="chevron-right" size={22} color="#5d3ebd" />
         </View>
         <View style={styles.headerTwo}>
           <Text
@@ -41,6 +36,7 @@ export default function index() {
               color: "5d3ebd",
               fontWeight: "bold",
               textAlign: "center",
+              marginBottom: 2,
             }}
           >
             TVS

@@ -9,15 +9,24 @@ import {
 import React from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Product } from "../../models";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../navigators/HomeNavigator";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type productItemProps = {
   item: Product;
 };
+type ProductNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "ProductDetails"
+>;
 
 export default function Index({ item }: productItemProps) {
   const { height, width } = Dimensions.get("window");
+  const navigation = useNavigation<ProductNavigationProp>();
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetails", { product: item })}
       style={{
         width: width * 0.28,
         marginTop: 12,

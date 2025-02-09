@@ -28,7 +28,7 @@ export default function Index() {
           flexWrap: "wrap",
           flex: 1,
           paddingVertical: 10,
-          marginRight: 10,
+         
         }}
       >
         {productsGetir.slice(2).map((item) => (

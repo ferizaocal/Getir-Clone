@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   textView: {
-    width: width - 210,
+    width: width - 205,
   },
   headerTwo: {
     height: height * 0.064,
