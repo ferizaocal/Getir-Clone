@@ -1,12 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useCallback } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
 import CategoryFilterScreen from "../screens/CategoryFilterScreen";
 import ProductDetailsScreen from "../screens/ProductDetailsScreen";
 import { Category, Product } from "../models";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Foundation from "@expo/vector-icons/Foundation";
 
 export type RootStackParamList = {
@@ -14,9 +14,15 @@ export type RootStackParamList = {
   CategoryDetails: { category: Category };
   ProductDetails: { product: Product };
 };
+
 const Stack = createStackNavigator<RootStackParamList>();
+
 export default function HomeNavigator() {
-  const navigation = useNavigation();
+  const commonHeaderOptions = {
+    headerStyle: { backgroundColor: "#5c3ebc" },
+    headerTintColor: "white",
+    headerBackTitle: "",
+  };
 
   return (
     <Stack.Navigator>
@@ -24,7 +30,7 @@ export default function HomeNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerStyle: { backgroundColor: "#5c3ebc" },
+          ...commonHeaderOptions,
           headerTitle: () => (
             <Image
               source={require("../../assets/getirlogo.png")}
@@ -33,13 +39,12 @@ export default function HomeNavigator() {
           ),
         }}
       />
+
       <Stack.Screen
         name="CategoryDetails"
         component={CategoryFilterScreen}
         options={{
-          headerTintColor: "white",
-          headerBackTitle: "",
-          headerStyle: { backgroundColor: "#5c3ebc" },
+          ...commonHeaderOptions,
           headerTitle: () => (
             <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
               Ürünler
@@ -47,28 +52,14 @@ export default function HomeNavigator() {
           ),
         }}
       />
+
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
         options={({ navigation }) => ({
-          headerTintColor: "white",
-          headerBackTitle: "",
-          headerStyle: { backgroundColor: "#5c3ebc" },
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}
-              style={{ marginLeft: 12 }}
-            >
-              <Ionicons name="close" size={24} color="white" />
-            </TouchableOpacity>
-          ),
-          headerRight: () => (
-            <TouchableOpacity style={{ marginRight: 12 }}>
-              <Foundation name="heart" size={24} color="#32177a" />
-            </TouchableOpacity>
-          ),
+          ...commonHeaderOptions,
+          headerLeft: () => <CloseButton navigation={navigation} />,
+          headerRight: () => <FavoriteButton />,
           headerTitle: () => (
             <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
               Ürün Detayı
@@ -77,5 +68,35 @@ export default function HomeNavigator() {
         })}
       />
     </Stack.Navigator>
+  );
+}
+
+const CloseButton = ({ navigation }: { navigation: any }) => (
+  <TouchableOpacity
+    onPress={() => navigation.goBack()}
+    style={{ marginLeft: 12 }}
+  >
+    <Ionicons name="close" size={24} color="white" />
+  </TouchableOpacity>
+);
+
+const FavoriteButton = () => (
+  <TouchableOpacity style={{ marginRight: 12 }}>
+    <Foundation name="heart" size={24} color="#32177a" />
+  </TouchableOpacity>
+);
+
+export function useHideTabBar() {
+  const navigation = useNavigation();
+
+  useFocusEffect(
+    useCallback(() => {
+      const parent = navigation.getParent();
+      parent?.setOptions({ tabBarStyle: { display: "none" } });
+
+      return () => {
+        parent?.setOptions({ tabBarStyle: { display: "flex" } });
+      };
+    }, [navigation])
   );
 }
