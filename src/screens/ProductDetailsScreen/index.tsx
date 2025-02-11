@@ -4,6 +4,8 @@ import { useHideTabBar } from "../../navigators/HomeNavigator";
 import { Product } from "../../models";
 import ImageCarousel from "../../components/ImageCarousel";
 import DetailBox from "../../components/DetailBox";
+import DetailProperty from "../../components/DetailProperty";
+import CardButton from "../../components/CardButton";
 
 export default function Index(props: any) {
   useHideTabBar();
@@ -33,7 +35,9 @@ export default function Index(props: any) {
         >
           Detaylar
         </Text>
+        <DetailProperty />
       </ScrollView>
+      <CardButton />
     </View>
   );
 }
