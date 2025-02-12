@@ -8,13 +8,13 @@ import { Category, Product } from "../models";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Foundation from "@expo/vector-icons/Foundation";
-import CartScreen from "../screens/CartScreen";
+import CardScreen from "../screens/CardScreen";
 
 export type RootStackParamList = {
   Home: undefined;
   CategoryDetails: { category: Category };
   ProductDetails: { product: Product };
-  CartScreen: undefined;
+  CardScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -56,7 +56,7 @@ export default function HomeNavigator() {
           ),
           headerRight: () => (
             <TouchableOpacity
-              onPress={() => navigation.navigate("CartScreen")}
+              onPress={() => navigation.navigate("CardScreen")}
               style={{
                 width: width * 0.22,
                 height: 33,
@@ -113,8 +113,8 @@ export default function HomeNavigator() {
         })}
       />
       <Stack.Screen
-        name="CartScreen"
-        component={CartScreen}
+        name="CardScreen"
+        component={CardScreen}
         options={({ navigation }) => ({
           headerTintColor: "white",
           headerBackTitle: "",

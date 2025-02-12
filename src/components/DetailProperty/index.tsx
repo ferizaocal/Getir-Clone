@@ -22,13 +22,11 @@ export default function Index() {
       <View
         style={{
           paddingVertical: 12,
-          //  paddingHorizontal:5,
           borderBottomWidth: index == details.length - 1 ? 0 : 0.3,
           borderBottomColor: "lightgray",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          // backgroundColor:'red'
         }}
       >
         <Text
