@@ -4,8 +4,8 @@ import { Category } from "../../models";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigators/HomeNavigator";
+import { SCREEN_WIDTH } from "../../utils/dimensions";
 
-const { width, height } = Dimensions.get("window");
 type categoryItemProps = {
   item: Category;
 };
@@ -15,25 +15,26 @@ type CategoryNavigationProp = StackNavigationProp<
   "CategoryDetails"
 >;
 
-export default function index({ item }: categoryItemProps) {
+export default function CategoryItem({ item }: categoryItemProps) {
   const navigation = useNavigation<CategoryNavigationProp>();
   return (
     <TouchableOpacity
       style={{
-        width: width * 0.25,
-        height: width * 0.24,
+        width: SCREEN_WIDTH * 0.25,
+        height: SCREEN_WIDTH * 0.24,
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-between",
-        marginTop: 8,
+
+        marginTop: 7,
       }}
       onPress={() => navigation.navigate("CategoryDetails", { category: item })}
     >
       <Image
         style={{
-          width: width * 0.18,
-          height: width * 0.18,
+          width: SCREEN_WIDTH * 0.18,
+          height: SCREEN_WIDTH * 0.18,
           borderRadius: 10,
+          marginBottom: 5,
         }}
         source={{
           uri: item.src,

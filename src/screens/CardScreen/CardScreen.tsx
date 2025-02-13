@@ -13,7 +13,7 @@ import { useHideTabBar } from "../../navigators/HomeNavigator";
 import ProductItem from "../../components/ProductItem";
 
 const { width, height } = Dimensions.get("window");
-export default function Index() {
+export default function CardScreen() {
   useHideTabBar();
 
   return (

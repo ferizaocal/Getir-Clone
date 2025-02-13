@@ -1,14 +1,14 @@
 import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import React, { useCallback } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../screens/HomeScreen";
-import CategoryFilterScreen from "../screens/CategoryFilterScreen";
-import ProductDetailsScreen from "../screens/ProductDetailsScreen";
+import HomeScreen from "../screens/HomeScreen/HomeScreen";
+import CategoryFilterScreen from "../screens/CategoryFilterScreen/CategoryFilterScreen";
+import ProductDetailsScreen from "../screens/ProductDetailsScreen/ProductDetailsScreen";
 import { Category, Product } from "../models";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Foundation from "@expo/vector-icons/Foundation";
-import CardScreen from "../screens/CardScreen";
+import CardScreen from "../screens/CardScreen/CardScreen";
 
 export type RootStackParamList = {
   Home: undefined;

@@ -38,9 +38,6 @@ export default function RootNavigator() {
         tabBarActiveTintColor: "#5c3ebc",
         tabBarInactiveTintColor: "#959595",
         headerShown: false,
-        tabBarStyle: {
-          height: 80,
-        },
       }}
     >
       <Tab.Screen

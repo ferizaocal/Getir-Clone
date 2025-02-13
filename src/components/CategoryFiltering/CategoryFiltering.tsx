@@ -32,7 +32,11 @@ const CategoryBox = ({
     </View>
   );
 };
-export default function Index({ category }: { category: Category }) {
+export default function CategoryFiltering({
+  category,
+}: {
+  category: Category;
+}) {
   const [categories, setCategories] = useState<Category[]>(categoriesGetir);
   return (
     <ScrollView

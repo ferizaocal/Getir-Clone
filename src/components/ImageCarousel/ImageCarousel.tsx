@@ -6,13 +6,17 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../utils/dimensions";
 
-const { width, height } = Dimensions.get("window");
+type ImageCarouselProps = {
+  images: string[];
+};
 
-export default function Index({ images }: { images: string[] }) {
+export default function ImageCarousel({ images }: ImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const onViewRef = React.useRef((viewableItems: any) => {
+
+  const onViewRef = useRef((viewableItems: any) => {
     if (viewableItems.viewableItems.length > 0) {
       setActiveIndex(viewableItems.viewableItems[0].index || 0);
     }
@@ -20,32 +24,16 @@ export default function Index({ images }: { images: string[] }) {
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
 
   return (
-    <View
-      style={{
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        height: height * 0.25,
-        backgroundColor: "white",
-        paddingTop: 15,
-      }}
-    >
+    <View style={styles.container}>
       <FlatList
         data={images}
-        style={{ width: width * 0.5, height: height * 0.18 }}
+        style={{ width: SCREEN_WIDTH * 0.5, height: SCREEN_HEIGHT * 0.18 }}
         renderItem={(item) => (
-          <Image
-            source={{ uri: item.item }}
-            style={{
-              width: width * 0.5,
-              height: height * 0.21,
-              resizeMode: "stretch",
-            }}
-          />
+          <Image source={{ uri: item.item }} style={styles.image} />
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        snapToInterval={width * 0.5}
+        snapToInterval={SCREEN_WIDTH * 0.5}
         snapToAlignment={"center"}
         decelerationRate={"fast"}
         viewabilityConfig={viewConfigRef.current}
@@ -68,6 +56,19 @@ export default function Index({ images }: { images: string[] }) {
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    height: SCREEN_HEIGHT * 0.25,
+    backgroundColor: "white",
+    paddingTop: 15,
+  },
+  image: {
+    width: SCREEN_WIDTH * 0.5,
+    height: SCREEN_HEIGHT * 0.21,
+    resizeMode: "stretch",
+  },
   dots: {
     flexDirection: "row",
     justifyContent: "space-around",
