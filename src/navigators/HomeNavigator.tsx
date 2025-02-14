@@ -162,18 +162,3 @@ const FavoriteButton = () => (
     <Foundation name="heart" size={24} color="#32177a" />
   </TouchableOpacity>
 );
-
-export function useHideTabBar() {
-  const navigation = useNavigation();
-
-  useFocusEffect(
-    useCallback(() => {
-      const parent = navigation.getParent();
-      parent?.setOptions({ tabBarStyle: { display: "none" } });
-
-      return () => {
-        parent?.setOptions({ tabBarStyle: { display: "flex" } });
-      };
-    }, [navigation])
-  );
-}

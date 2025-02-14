@@ -1,12 +1,12 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useHideTabBar } from "../../navigators/HomeNavigator";
 import { Product } from "../../models";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import DetailBox from "../../components/DetailBox/DetailBox";
 import DetailProperty from "../../components/DetailProperty/DetailProperty";
 import CardButton from "../../components/CardButton/CardButton";
 import CustomText from "../../components/CustomText/CustomText";
+import { useHideTabBar } from "../../hooks/useHideTabBar";
 
 export default function ProductDetailsScreen(props: any) {
   useHideTabBar();

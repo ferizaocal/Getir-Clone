@@ -1,3 +1,4 @@
+import React from "react";
 import {
   View,
   Text,
@@ -5,91 +6,109 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
+  StyleSheet,
 } from "react-native";
-import React from "react";
 import CardItem from "../../components/CardItem";
 import productsGetir from "../../../assets/productsGetir";
-import { useHideTabBar } from "../../navigators/HomeNavigator";
-import ProductItem from "../../components/ProductItem";
+import ProductItem from "../../components/ProductItem/ProductItem";
+import { useHideTabBar } from "../../hooks/useHideTabBar";
 
 const { width, height } = Dimensions.get("window");
+
 export default function CardScreen() {
   useHideTabBar();
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
         <FlatList
-          style={{ backgroundColor: "f9f9f9" }}
+          style={styles.flatList}
           data={productsGetir.slice(0, 4)}
           renderItem={({ item }) => <CardItem product={item} />}
         />
-        <Text style={{ padding: 15, fontWeight: "bold", color: "#5D3EBD" }}>
-          Önerilen Ürünler
-        </Text>
+        <Text style={styles.suggestedText}>Önerilen Ürünler</Text>
         <ScrollView
-          style={{ backgroundColor: "white", height: height * 0.25 }}
+          style={styles.horizontalScroll}
           showsHorizontalScrollIndicator={false}
-          bounces={true}
-          horizontal={true}
+          bounces
+          horizontal
         >
           {productsGetir.map((item, index) => (
-            <ProductItem key={index} index={item.id} item={item} />
+            <ProductItem key={item.id} index={item.id} item={item} />
           ))}
         </ScrollView>
       </ScrollView>
-      <TouchableOpacity
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          height: height * 0.12,
-          paddingHorizontal: "4%",
-          width: "100%",
-          backgroundColor: "#f8f8f8",
-          position: "absolute",
-          bottom: 0,
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            flex: 3,
-            borderBottomLeftRadius: 8,
-            borderTopLeftRadius: 8,
-            backgroundColor: "#5D3EBD",
-            height: height * 0.06,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: -10,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>
-            Devam
-          </Text>
+
+      {/* Alt Kısım - Devam ve Fiyat */}
+      <TouchableOpacity style={styles.bottomContainer}>
+        <TouchableOpacity style={styles.continueButton}>
+          <Text style={styles.continueText}>Devam</Text>
         </TouchableOpacity>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "white",
-            height: height * 0.06,
-            marginTop: -10,
-            borderTopRightRadius: 8,
-            borderBottomRightRadius: 8,
-          }}
-        >
-          <Text
-            style={{
-              color: "#5D3EBD",
-              fontWeight: "bold",
-              fontSize: 15,
-            }}
-          >
-            <Text>{"\u20BA"}</Text>
-            24.99
-          </Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.priceText}>{"\u20BA"} 24.99</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  flatList: {
+    backgroundColor: "#f9f9f9",
+  },
+  suggestedText: {
+    padding: 15,
+    fontWeight: "bold",
+    color: "#5D3EBD",
+  },
+  horizontalScroll: {
+    backgroundColor: "white",
+    height: height * 0.25,
+  },
+  bottomContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: height * 0.12,
+    paddingHorizontal: "4%",
+    width: "100%",
+    backgroundColor: "#f8f8f8",
+    position: "absolute",
+    bottom: 0,
+  },
+  continueButton: {
+    flex: 3,
+    borderBottomLeftRadius: 8,
+    borderTopLeftRadius: 8,
+    backgroundColor: "#5D3EBD",
+    height: height * 0.06,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: -10,
+  },
+  continueText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  priceContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    height: height * 0.06,
+    marginTop: -10,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+  },
+  priceText: {
+    color: "#5D3EBD",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+});
