@@ -12,6 +12,8 @@ import { Product } from "../../models";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigators/HomeNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { useAppDispatch } from "../../hooks/useRedux";
+import { addToCart } from "../../redux/features/cardSlice";
 
 type productItemProps = {
   item: Product;
@@ -24,6 +26,7 @@ type ProductNavigationProp = StackNavigationProp<
 export default function ProductItem({ item }: productItemProps) {
   const { height, width } = Dimensions.get("window");
   const navigation = useNavigation<ProductNavigationProp>();
+  const dispatch = useAppDispatch();
 
   return (
     <TouchableOpacity
@@ -47,7 +50,10 @@ export default function ProductItem({ item }: productItemProps) {
       <Text style={styles.productName}>{item.name}</Text>
       <Text style={styles.productAmount}>{item.miktar}</Text>
 
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => dispatch(addToCart(item))}
+      >
         <Entypo name="plus" size={22} color="#5D3EBD" />
       </TouchableOpacity>
     </TouchableOpacity>

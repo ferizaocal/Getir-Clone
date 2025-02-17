@@ -8,23 +8,25 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import CardItem from "../../components/CardItem";
+import CardItem from "../../components/CardItem/CardItem";
 import productsGetir from "../../../assets/productsGetir";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { useHideTabBar } from "../../hooks/useHideTabBar";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const { width, height } = Dimensions.get("window");
 
 export default function CardScreen() {
   useHideTabBar();
+  const { items, totalPrice } = useAppSelector((state) => state.cart);
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <FlatList
           style={styles.flatList}
-          data={productsGetir.slice(0, 4)}
-          renderItem={({ item }) => <CardItem product={item} />}
+          data={items}
+          renderItem={({ item }) => <CardItem product={item.product} />}
         />
         <Text style={styles.suggestedText}>Önerilen Ürünler</Text>
         <ScrollView
@@ -33,19 +35,21 @@ export default function CardScreen() {
           bounces
           horizontal
         >
-          {productsGetir.map((item, index) => (
-            <ProductItem key={item.id} index={item.id} item={item} />
+          {productsGetir.map((item) => (
+            <ProductItem key={item.id} item={item} />
           ))}
         </ScrollView>
       </ScrollView>
 
-      {/* Alt Kısım - Devam ve Fiyat */}
       <TouchableOpacity style={styles.bottomContainer}>
         <TouchableOpacity style={styles.continueButton}>
           <Text style={styles.continueText}>Devam</Text>
         </TouchableOpacity>
         <View style={styles.priceContainer}>
-          <Text style={styles.priceText}>{"\u20BA"} 24.99</Text>
+          <Text style={styles.priceText}>
+            {"\u20BA"}
+            {totalPrice.toFixed(2)}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>

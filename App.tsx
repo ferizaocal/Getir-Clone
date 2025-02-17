@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
 import RootNavigator from "./src/navigators/RootNavigator";
 import "react-native-gesture-handler";
+import { Provider } from "react-redux";
+import { store } from "./src/redux/store";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
