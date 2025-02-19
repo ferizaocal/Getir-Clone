@@ -8,14 +8,22 @@ import CardButton from "../../components/CardButton/CardButton";
 import CustomText from "../../components/CustomText/CustomText";
 import { useHideTabBar } from "../../hooks/useHideTabBar";
 
-export default function ProductDetailsScreen(props: any) {
+type ProductDetailsProps = {
+  route: {
+    params: {
+      product: Product;
+    };
+  };
+};
+
+export default function ProductDetailsScreen({ route }: ProductDetailsProps) {
   useHideTabBar();
 
   const [product, setProduct] = useState<Product>();
   useEffect(() => {
-    setProduct(props.route?.params?.product);
+    setProduct(route?.params?.product);
   }, []);
-  console.log(product);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
@@ -29,10 +37,7 @@ export default function ProductDetailsScreen(props: any) {
 
         <DetailProperty />
       </ScrollView>
-      <CardButton
-        product={product}
-        addItemToCart={() => console.log("Ürün sepete eklendi")}
-      />
+      {product && <CardButton product={product} />}
     </View>
   );
 }

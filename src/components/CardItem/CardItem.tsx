@@ -15,9 +15,10 @@ import { addToCart, removeFromCart } from "../../redux/features/cardSlice";
 
 type CardItemProps = {
   product: Product;
+  quantity: number;
 };
 
-export default function CardItem({ product }: CardItemProps) {
+export default function CardItem({ product, quantity }: CardItemProps) {
   const dispatch = useAppDispatch();
   return (
     <View style={styles.container}>
@@ -43,9 +44,7 @@ export default function CardItem({ product }: CardItemProps) {
             <CustomText style={styles.counterText}>-</CustomText>
           </TouchableOpacity>
           <View style={styles.counterValue}>
-            <CustomText style={styles.counterValueText}>
-              {product.miktar}
-            </CustomText>
+            <CustomText style={styles.counterValueText}>{quantity}</CustomText>
           </View>
           <TouchableOpacity
             style={styles.counterButton}

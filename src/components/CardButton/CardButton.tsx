@@ -8,19 +8,19 @@ import {
 import React from "react";
 import CustomText from "../CustomText/CustomText";
 import { SCREEN_HEIGHT } from "../../utils/dimensions";
+import { Product } from "../../models";
+import { useAppDispatch } from "../../hooks/useRedux";
+import { addToCart } from "../../redux/features/cardSlice";
 
 interface CardButtonProps {
-  addItemToCart: (product: any) => void;
-  product: any;
+  product: Product;
 }
 
-export default function CardButton({
-  addItemToCart,
-  product,
-}: CardButtonProps) {
+export default function CardButton({ product }: CardButtonProps) {
+  const dispatch = useAppDispatch();
   return (
     <TouchableOpacity
-      onPress={() => addItemToCart(product)}
+      onPress={() => dispatch(addToCart(product))}
       style={styles.container}
     >
       <View style={styles.button}>

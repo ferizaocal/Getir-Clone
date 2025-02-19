@@ -9,6 +9,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Foundation from "@expo/vector-icons/Foundation";
 import CardScreen from "../screens/CardScreen/CardScreen";
+import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { clearCart } from "../redux/features/cardSlice";
+import { SCREEN_WIDTH } from "../utils/dimensions";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,9 +22,9 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const { width, height } = Dimensions.get("window");
-
 export default function HomeNavigator() {
+  const dispatch = useAppDispatch();
+  const { items, totalPrice } = useAppSelector((state) => state.cart);
   const commonHeaderOptions = {
     headerStyle: { backgroundColor: "#5c3ebc" },
     headerTintColor: "white",
@@ -58,10 +61,10 @@ export default function HomeNavigator() {
             <TouchableOpacity
               onPress={() => navigation.navigate("CardScreen")}
               style={{
-                width: width * 0.22,
+                width: SCREEN_WIDTH * 0.22,
                 height: 33,
                 backgroundColor: "white",
-                marginRight: width * 0.02,
+                marginRight: SCREEN_WIDTH * 0.02,
                 borderRadius: 9,
                 flexDirection: "row",
                 alignItems: "center",
@@ -89,8 +92,8 @@ export default function HomeNavigator() {
                     fontSize: 12,
                   }}
                 >
-                  <Text>{"\u20BA"}</Text>
-                  24,00
+                  {"\u20BA"}
+                  {totalPrice.toFixed(2)}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -133,7 +136,10 @@ export default function HomeNavigator() {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity style={{ paddingRight: 10 }}>
+            <TouchableOpacity
+              style={{ paddingRight: 10 }}
+              onPress={() => dispatch(clearCart())}
+            >
               <Ionicons
                 style={{ marginRight: 8 }}
                 name="trash"

@@ -13,8 +13,7 @@ import productsGetir from "../../../assets/productsGetir";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { useHideTabBar } from "../../hooks/useHideTabBar";
 import { useAppSelector } from "../../hooks/useRedux";
-
-const { width, height } = Dimensions.get("window");
+import { SCREEN_HEIGHT } from "../../utils/dimensions";
 
 export default function CardScreen() {
   useHideTabBar();
@@ -26,7 +25,9 @@ export default function CardScreen() {
         <FlatList
           style={styles.flatList}
           data={items}
-          renderItem={({ item }) => <CardItem product={item.product} />}
+          renderItem={({ item }) => (
+            <CardItem product={item.product} quantity={item.quantity} />
+          )}
         />
         <Text style={styles.suggestedText}>Önerilen Ürünler</Text>
         <ScrollView
@@ -73,12 +74,12 @@ const styles = StyleSheet.create({
   },
   horizontalScroll: {
     backgroundColor: "white",
-    height: height * 0.25,
+    height: SCREEN_HEIGHT * 0.25,
   },
   bottomContainer: {
     flexDirection: "row",
     alignItems: "center",
-    height: height * 0.12,
+    height: SCREEN_HEIGHT * 0.12,
     paddingHorizontal: "4%",
     width: "100%",
     backgroundColor: "#f8f8f8",
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
     backgroundColor: "#5D3EBD",
-    height: height * 0.06,
+    height: SCREEN_HEIGHT * 0.06,
     justifyContent: "center",
     alignItems: "center",
     marginTop: -10,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    height: height * 0.06,
+    height: SCREEN_HEIGHT * 0.06,
     marginTop: -10,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,

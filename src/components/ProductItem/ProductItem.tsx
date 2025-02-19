@@ -14,6 +14,7 @@ import { RootStackParamList } from "../../navigators/HomeNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { addToCart } from "../../redux/features/cardSlice";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../utils/dimensions";
 
 type productItemProps = {
   item: Product;
@@ -24,17 +25,22 @@ type ProductNavigationProp = StackNavigationProp<
 >;
 
 export default function ProductItem({ item }: productItemProps) {
-  const { height, width } = Dimensions.get("window");
   const navigation = useNavigation<ProductNavigationProp>();
   const dispatch = useAppDispatch();
 
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("ProductDetails", { product: item })}
-      style={[styles.container, { width: width * 0.28, height: height * 0.23 }]}
+      style={[
+        styles.container,
+        { width: SCREEN_WIDTH * 0.28, height: SCREEN_HEIGHT * 0.23 },
+      ]}
     >
       <Image
-        style={[styles.image, { width: width * 0.285, height: width * 0.285 }]}
+        style={[
+          styles.image,
+          { width: SCREEN_WIDTH * 0.285, height: SCREEN_WIDTH * 0.285 },
+        ]}
         source={{ uri: item.image }}
       />
       <View style={styles.priceContainer}>

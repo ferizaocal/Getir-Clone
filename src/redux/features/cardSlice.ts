@@ -46,7 +46,10 @@ const cartSlice = createSlice({
         } else {
           existingItem.quantity -= 1;
         }
-        state.totalPrice -= existingItem.product.fiyat;
+        state.totalPrice = Math.max(
+          0,
+          state.totalPrice - existingItem.product.fiyat
+        );
       }
     },
     clearCart: (state: CartState) => {
