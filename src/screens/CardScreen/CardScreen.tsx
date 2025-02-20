@@ -21,7 +21,7 @@ export default function CardScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
+      <View style={styles.scrollContainer}>
         <FlatList
           style={styles.flatList}
           data={items}
@@ -40,7 +40,7 @@ export default function CardScreen() {
             <ProductItem key={item.id} item={item} />
           ))}
         </ScrollView>
-      </ScrollView>
+      </View>
 
       <TouchableOpacity style={styles.bottomContainer}>
         <TouchableOpacity style={styles.continueButton}>
@@ -61,9 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollContainer: {
-    flex: 1,
-  },
+  scrollContainer: {},
   flatList: {
     backgroundColor: "#f9f9f9",
   },

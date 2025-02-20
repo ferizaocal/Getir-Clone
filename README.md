@@ -38,7 +38,7 @@ To install the project, navigate to the directory and run:
 yarn global add expo-cli
 yarn install
 
-🛠️ Run
+Run
 
 yarn android
 yarn ios

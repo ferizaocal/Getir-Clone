@@ -6,10 +6,10 @@ import MainCategories from "../../components/MainCategories/MainCategories";
 
 export default function HomeScreen() {
   return (
-    <ScrollView stickyHeaderIndices={[0]}>
+    <>
       <HeaderMain />
       <BannerCarousel />
       <MainCategories />
-    </ScrollView>
+    </>
   );
 }

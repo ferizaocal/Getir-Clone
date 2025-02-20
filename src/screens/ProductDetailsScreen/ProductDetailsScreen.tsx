@@ -26,7 +26,7 @@ export default function ProductDetailsScreen({ route }: ProductDetailsProps) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
+      <View style={styles.scrollContainer}>
         <ImageCarousel images={product?.images ?? []} />
         <DetailBox
           price={product?.fiyat ?? 0}
@@ -36,7 +36,7 @@ export default function ProductDetailsScreen({ route }: ProductDetailsProps) {
         <CustomText style={styles.detailText}>Detaylar</CustomText>
 
         <DetailProperty />
-      </ScrollView>
+      </View>
       {product && <CardButton product={product} />}
     </View>
   );
