@@ -34,16 +34,17 @@ With Redux Toolkit, you can select categories, find products, and add them to yo
 
 To install the project, navigate to the directory and run:
 
-````sh
+```sh
 yarn global add expo-cli
 yarn install
 
-## 🛠️ Run
+🛠️ Run
 
-```sh
 yarn android
 yarn ios
 
-##🚨 Disclaimer
+```
+
+## 🚨 Disclaimer
+
 This is a legal disclaimer stating that the project is for educational purposes only and is not affiliated with any organization. 🚀
-````
