@@ -23,8 +23,10 @@ export default function CardButton({ product }: CardButtonProps) {
       onPress={() => dispatch(addToCart(product))}
       style={styles.container}
     >
-      <View style={styles.button}>
-        <CustomText style={styles.buttonText}>Sepete Ekle</CustomText>
+      <View style={styles.buttonContainer}>
+        <View style={styles.button}>
+          <CustomText style={styles.buttonText}>Sepete Ekle</CustomText>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -37,6 +39,11 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "white",
   },
+  buttonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   button: {
     backgroundColor: "#5D39C1",
     flexDirection: "row",
@@ -44,7 +51,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: SCREEN_HEIGHT * 0.05,
     width: "88%",
-    marginHorizontal: "6%",
     borderRadius: 10,
   },
   buttonText: {
