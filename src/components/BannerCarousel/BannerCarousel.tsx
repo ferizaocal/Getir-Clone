@@ -14,7 +14,7 @@ const BannerItem = ({ uri }: { uri: string }) => (
     source={{ uri }}
     style={{
       width: SCREEN_WIDTH,
-      height: SCREEN_HEIGHT * 0.24,
+      height: SCREEN_HEIGHT * 0.211,
       resizeMode: "stretch",
     }}
   />

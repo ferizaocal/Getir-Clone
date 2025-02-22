@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   bottomContainer: {
     flexDirection: "row",
     alignItems: "center",
-    height: SCREEN_HEIGHT * 0.12,
+    height: SCREEN_HEIGHT * 0.11,
     paddingHorizontal: "4%",
     width: "100%",
     backgroundColor: "#f8f8f8",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
     backgroundColor: "#5D3EBD",
-    height: SCREEN_HEIGHT * 0.06,
+    height: SCREEN_HEIGHT * 0.055,
     justifyContent: "center",
     alignItems: "center",
     marginTop: -10,
