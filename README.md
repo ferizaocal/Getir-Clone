@@ -2,12 +2,12 @@
 
 ![Getir Clone](./assets/getirimage.png)
 
-## 📲 About
+## About
 
 In this project, a full-featured Getir clone was built using React Native Expo for cross-platform development on iOS and Android.  
 With Redux Toolkit, you can select categories, find products, and add them to your cart. 🚀
 
-## ⚒️ Core Tech Stack
+## ⚒️ Technologies Used
 
 🔼 Expo  
 ⭐️ React Native  
